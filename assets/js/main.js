@@ -194,3 +194,7 @@ function calcNumbers(numA, numB, operator){
     }
     return parseFloat(total);
 }
+
+function buttonClear(){
+    window.location.reload()
+}
