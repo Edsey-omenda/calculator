@@ -20,7 +20,7 @@ let calcOperator;
 let total;
 
 
-function buttonnumber(button) {
+function showSelectedOperator(button) {
 
     operator = document.getElementById("operator");
     box = document.getElementById("result");
@@ -86,7 +86,7 @@ function buttonnumber(button) {
             box.innerText = button;
             num1 = false;
             operatorValue = button
-            calcNumbers()
+            showSelectedOperator()
             return;
         }
         // overide history and return the value operator tapped
@@ -133,12 +133,12 @@ function buttonnumber(button) {
             }
             let newNum = box.innerText
 
-            // calculate total
+           
             if (button==equal && calcOperator != null){
                 var total = calculate(numbers[0], numbers[1], calcOperator)
                 box.innerText = total;
 
-                // append second number to history
+              
                 if (!last_operation_history.innerText.includes("=")){
                     last_operation_history.innerText += " " + numbers[1] + " ="
                 }
@@ -164,4 +164,33 @@ function buttonnumber(button) {
         }
     }
 
+}
+
+function calcNumbers(numA, numB, operator){
+
+    if (operator === "+"){
+        total = (parseFloat)(numA)+(parseFloat)(numB)
+    }
+    else if (operator === "-"){
+        total = (parseFloat)(numA)-(parseFloat)(numB)
+    }
+    else if (operator === "*"){
+        total = (parseFloat)(numA)*(parseFloat)(numB)
+    }
+    else if (operator === "/"){
+        total = (parseFloat)(numA)/(parseFloat)(numB)
+    }
+    else {
+        if (total == box.innerText){
+            return total
+        }
+        else {
+            return box.innerText
+        }
+    }
+ 
+    if (!Number.isInteger(total)){
+        total = total.toPrecision(12);
+    }
+    return parseFloat(total);
 }
